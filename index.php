@@ -53,6 +53,8 @@
 
 	$session = $helper->getSessionFromRedirect();
 
+	var_dump($loginUrl);
+
 ?>
 
 
