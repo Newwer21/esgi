@@ -11,7 +11,6 @@
 
 	FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
 
-	$helper = new FacebookRedirectLoginHelper($redirectUrl);
 
 ?>
 
@@ -45,6 +44,7 @@
 
 	$redirectUrl = 'https://esgi.herokuapp.com/';
 
+	$helper = new FacebookRedirectLoginHelper($redirectUrl);
 	$loginUrl = $helper->getLoginUrl(['email, user_birthday']);
 
 	// phpinfo();
