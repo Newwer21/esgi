@@ -59,20 +59,21 @@
 		$session = $helper->getSessionFromRedirect();
 	}
 
-	// if ($session) {
-	// 	try {
+	if ($session) {
+		var_dump($ession);
+		try {
 			
-	// 		$user_profile = ( new FacebookRequest($session, 'GET', '/me',)->execute()->getGraphObject( GraphUser::className() ) );
+			$user_profile = ( new FacebookRequest($session, 'GET', '/me',)->execute()->getGraphObject( GraphUser::className() ) );
 
-	// 		echo "Nom : " . $user_profile->getName();
+			echo "Nom : " . $user_profile->getName();
 			
-	// 	} catch (Exception $e) {
+		} catch (Exception $e) {
 			
-	// 		echo 'Exception... Code: ' . $e->getCode();
-	// 		echo ' avec message: ' . $e->getMessage();
+			echo 'Exception... Code: ' . $e->getCode();
+			echo ' avec message: ' . $e->getMessage();
 			
-	// 	}
-	// }
+		}
+	}
 
 
 	// var_dump($loginUrl);
