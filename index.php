@@ -47,13 +47,37 @@
 	$helper = new FacebookRedirectLoginHelper($redirectUrl);
 	$loginUrl = $helper->getLoginUrl(['email, user_birthday']);
 
+	echo '<a href="'.$loginUrl.'">Se connecter</a>';
 	// phpinfo();
 
-	echo '<a href="'.$loginUrl.'">Se connecter</a>';
+	if (isset($_SESSION) && isset($_SESSION['fb_token']))
+	{
+		$session = new FacebookSession($_SESSION['fb_token']);
+	}
+	else
+	{
+		$session = $helper->getSessionFromRedirect();
+	}
 
-	$session = $helper->getSessionFromRedirect();
+	if ($session) {
+		try {
+			
+			$user_profile = ( new FacebookRequest($session, 'GET', '/me',)->execute()->getGraphObject( GraphUser::className() ) );
 
-	var_dump($loginUrl);
+			echo "Nom : " . $user_profile->getName();
+			
+		} catch (Exception $e) {
+			
+			echo 'Exception... Code: ' . $e->getCode();
+			echo ' avec message: ' . $e->getMessage();
+			
+		}
+	}
+
+
+	// var_dump($loginUrl);
+
+
 
 ?>
 
