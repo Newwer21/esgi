@@ -53,6 +53,7 @@
 
 	echo '<a href="'.$loginUrl.'">Se connecter</a>';
 	// phpinfo();
+	var_dump($session);
 
 	if (isset($_SESSION) && isset($_SESSION['fb_token']))
 	{
