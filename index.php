@@ -6,6 +6,8 @@
 	use Facebook\FacebookRedirectLoginHelper;
 	use Facebook\FacebookSession;
 	use Facebook\GraphUser;
+	use Facebook\FacebookRequest;
+	use Facebook\FacebookRequestException;
 
 	const APP_ID = 1581981972065213;
 	const APP_SECRET = bb83e05a20109eed97532c6328a24e4e;
@@ -42,7 +44,7 @@
 <body>
 
 <?php 
-
+	echo 'oui';
 	$redirectUrl = 'https://esgi.herokuapp.com/';
 
 	$helper = new FacebookRedirectLoginHelper($redirectUrl);
@@ -68,11 +70,11 @@
 		var_dump($session);
 		try {
 			
-			$user_profile = ( new FacebookRequest($session, 'GET', '/me')->execute()->getGraphObject( GraphUser::className() ) );
+			$user_profile = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject( GraphUser::className() );
 
 			echo "Nom : " . $user_profile->getName();
 			
-		} catch (Exception $e) {
+		} catch (FacebookRequestException $e) {
 			
 			echo 'Exception... Code: ' . $e->getCode();
 			echo ' avec message: ' . $e->getMessage();
