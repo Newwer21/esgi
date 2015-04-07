@@ -5,6 +5,7 @@
 
 	use Facebook\FacebookRedirectLoginHelper;
 	use Facebook\FacebookSession;
+	use Facebook\GraphUser;
 
 	const APP_ID = 1581981972065213;
 	const APP_SECRET = bb83e05a20109eed97532c6328a24e4e;
