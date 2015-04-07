@@ -50,14 +50,14 @@
 	echo '<a href="'.$loginUrl.'">Se connecter</a>';
 	// phpinfo();
 
-	// if (isset($_SESSION) && isset($_SESSION['fb_token']))
-	// {
-	// 	$session = new FacebookSession($_SESSION['fb_token']);
-	// }
-	// else
-	// {
-	// 	$session = $helper->getSessionFromRedirect();
-	// }
+	if (isset($_SESSION) && isset($_SESSION['fb_token']))
+	{
+		$session = new FacebookSession($_SESSION['fb_token']);
+	}
+	else
+	{
+		$session = $helper->getSessionFromRedirect();
+	}
 
 	// if ($session) {
 	// 	try {
