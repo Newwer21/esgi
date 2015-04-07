@@ -53,7 +53,7 @@
 
 	echo '<a href="'.$loginUrl.'">Se connecter</a>';
 	// phpinfo();
-	var_dump($session);
+	// echo '$_SESSION '; var_dump($_SESSION);
 
 	if (isset($_SESSION) && isset($_SESSION['fb_token']))
 	{
@@ -65,7 +65,8 @@
 		// echo 'session par $helper';
 		$session = $helper->getSessionFromRedirect();
 	}
-
+	echo '$_SESSION '; var_dump($_SESSION);
+	echo ' $session '; 
 	var_dump($session);
 
 	if ($session) {
