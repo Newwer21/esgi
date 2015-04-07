@@ -52,15 +52,19 @@
 
 	if (isset($_SESSION) && isset($_SESSION['fb_token']))
 	{
+		echo 'session par FacebookSession';
 		$session = new FacebookSession($_SESSION['fb_token']);
 	}
 	else
 	{
+		echo 'session par $helper';
 		$session = $helper->getSessionFromRedirect();
 	}
+	
+	var_dump($session);
 
 	if ($session) {
-		var_dump($ession);
+		var_dump($session);
 		// try {
 			
 		// 	$user_profile = ( new FacebookRequest($session, 'GET', '/me',)->execute()->getGraphObject( GraphUser::className() ) );
