@@ -15,7 +15,7 @@
 	const APP_ID = 1581981972065213;
 	const APP_SECRET = bb83e05a20109eed97532c6328a24e4e;
 
-    FacebookSession::setDefaultApplication(APPID, APPSECRET);
+    FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
 
     $helper = new FacebookRedirectLoginHelper('https://projetesgi1.herokuapp.com/');
 
