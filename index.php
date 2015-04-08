@@ -17,7 +17,7 @@
 
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
 
-    $helper = new FacebookRedirectLoginHelper('https://projetesgi1.herokuapp.com/');
+    $helper = new FacebookRedirectLoginHelper('https://esgi.herokuapp.com/');
 
     if( isset($_SESSION) &&  isset($_SESSION['fb_token']))
     {
@@ -72,7 +72,6 @@
 
       <?php
 
-
         if($session)
         {
           
@@ -93,9 +92,7 @@
         }else{
           $loginUrl = $helper->getLoginUrl();
           echo "<a href='".$loginUrl."'>Se connecter</a>";
-        }
-
-          
+        } 
 
       ?>
   </body>
