@@ -1,6 +1,8 @@
 <?php 
 	session_start();
 
+	error_reporting( E_ALL );
+
 
 	use Facebook\FacebookRedirectLoginHelper;
 	use Facebook\FacebookSession;
