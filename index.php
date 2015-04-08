@@ -87,6 +87,8 @@
           echo "<pre>";
           print_r($user);
           echo "</pre>";
+
+          echo 'Nom : ' . $user->getName();
       
 
         }else{
