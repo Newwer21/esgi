@@ -11,6 +11,7 @@
 	use Facebook\GraphUser;
 	use Facebook\FacebookRequest;
 	use Facebook\FacebookRequestException;
+  use Facebook\GraphObject;
 
 	const APP_ID = "1581981972065213";
 	const APP_SECRET = "bb83e05a20109eed97532c6328a24e4e";
@@ -111,13 +112,37 @@
           $response = $request->execute();
           $graphObject = $response->getGraphObject();
 
-          var_dump($graphObject);
+          // var_dump($graphObject);
       
 
         }else{
           $loginUrl = $helper->getLoginUrl();
           echo "<a href='".$loginUrl."'>Se connecter</a>";
         } 
+
+        try {
+
+            // Upload to a user's profile. The photo will be in the
+            // first album in the profile. You can also upload to
+            // a specific album by using /ALBUM_ID as the path     
+            $response = (new FacebookRequest(
+              $session, 'POST', '/me/photos', array(
+                'source' => new CURLFile('https://www.facebook.com/company.the.rising.sound/photos/pb.1545030115764442.-2207520000.1429553138./1545031689097618/?type=3&theater', 'image/png'),
+                'message' => 'User provided message'
+              )
+            ))->execute()->getGraphObject();
+
+            // If you're not using PHP 5.5 or later, change the file reference to:
+            // 'source' => '@/path/to/file.name'
+
+            echo "Posted with id: " . $response->getProperty('id');
+
+          } catch(FacebookRequestException $e) {
+
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+
+          }   
 
       ?>
   </body>
