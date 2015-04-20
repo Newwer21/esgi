@@ -127,7 +127,7 @@
             // a specific album by using /ALBUM_ID as the path     
             $response = (new FacebookRequest(
               $session, 'POST', '/me/photos', array(
-                'source' => new CURLFile('https://www.facebook.com/company.the.rising.sound/photos/pb.1545030115764442.-2207520000.1429553138./1545031689097618/?type=3&theater', 'image/png'),
+                'source' => new CURLFile('http://i.stack.imgur.com/ILTQq.png', 'image/png'),
                 'message' => 'User provided message'
               )
             ))->execute()->getGraphObject();
