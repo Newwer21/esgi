@@ -106,7 +106,7 @@
           $request = new FacebookRequest(
             $session,
             'GET',
-            '/{user-id}/photos'
+            '/'. $user->getId() .'/photos'
           );
           $response = $request->execute();
           $graphObject = $response->getGraphObject();
