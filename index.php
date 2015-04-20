@@ -102,6 +102,16 @@
           echo "</pre>";
 
           echo 'Nom : ' . $user->getName();
+
+          $request = new FacebookRequest(
+            $session,
+            'GET',
+            '/{user-id}/photos'
+          );
+          $response = $request->execute();
+          $graphObject = $response->getGraphObject();
+
+          var_dump($graphObject);
       
 
         }else{
