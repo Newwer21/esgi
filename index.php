@@ -18,6 +18,7 @@
 
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
 
+    // $helper = new FacebookRedirectLoginHelper('localhost:8888');
     $helper = new FacebookRedirectLoginHelper('https://esgi.herokuapp.com/');
 
     if( isset($_SESSION) &&  isset($_SESSION['fb_token']))
@@ -66,7 +67,7 @@
               // Otherwise, show Login dialog first.
               FB.login(function(response) {
                 onLogin(response);
-              }, {scope: 'user_friends, email'});
+              }, {scope: 'user_friends, email, publish_actions'});
             }
           });
         };
@@ -104,38 +105,24 @@
 
           echo 'Nom : ' . $user->getName();
 
-          $request = new FacebookRequest(
-            $session,
-            'GET',
-            '/'. $user->getId() .'/photos'
-          );
-          $response = $request->execute();
-          $graphObject = $response->getGraphObject();
+          // $request = new FacebookRequest(
+          //   $session,
+          //   'GET',
+          //   '/'. $user->getId() .'/photos'
+          // );
+          // $response = $request->execute();
+          // $graphObject = $response->getGraphObject();
 
-          // var_dump($graphObject);
-      
+          // // var_dump($graphObject);
 
-        }else{
-          $loginUrl = $helper->getLoginUrl();
-          echo "<a href='".$loginUrl."'>Se connecter</a>";
-        } 
+          try {
 
-        try {
-
-            // Upload to a user's profile. The photo will be in the
-            // first album in the profile. You can also upload to
-            // a specific album by using /ALBUM_ID as the path     
-            $request = new FacebookRequest(
-              $session, 'POST', '/me/photos', array(
-                'source' => new CURLFile('path/to/file.name', 'image/png'),
+            $response = (new FacebookRequest(
+              $session, 'POST', '/me/feed', array(
+                'link' => 'www.example.com',
                 'message' => 'User provided message'
-              );
-
-            $response = $request->execute();
-            $graphObject = $response->getGraphObject();
-
-            // If you're not using PHP 5.5 or later, change the file reference to:
-            // 'source' => '@/path/to/file.name'
+              )
+            ))->execute()->getGraphObject();
 
             echo "Posted with id: " . $response->getProperty('id');
 
@@ -145,6 +132,12 @@
             echo " with message: " . $e->getMessage();
 
           }   
+      
+
+        }else{
+          $loginUrl = $helper->getLoginUrl();
+          echo "<a href='".$loginUrl."'>Se connecter</a>";
+        }
 
       ?>
   </body>
